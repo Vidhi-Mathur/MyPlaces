@@ -26,17 +26,15 @@ const Auth = () => {
         }
     }, false)
 
-    const submitHandler = async event => {
-        event.preventDefault()
+    const submitHandler = async(e) => {
+        e.preventDefault()
         if(isLoginMode){
             try{
-            const responseData = await sendRequest(process.env.REACT_APP_URL + '/users/login', 
-                'POST',
+            const responseData = await sendRequest(process.env.REACT_APP_URL + '/users/login', 'POST',
                 JSON.stringify({
                     email: formState.inputs.email.value,
                     password: formState.inputs.password.value
-                }),
-                {
+                }), {
                 'Content-Type': 'application/json'
                 }
             )

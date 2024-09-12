@@ -1,5 +1,5 @@
-import { useState, useEffect, useCallback } from "react";
-let logoutTimer;
+import { useState, useEffect, useCallback } from "react"
+let logoutTimer
 
 export const useAuth = () => {
     const [token, setToken] = useState(false)

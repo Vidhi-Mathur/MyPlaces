@@ -1,12 +1,12 @@
-import { useRef } from "react";
+import { useRef } from "react"
 import { createPortal } from 'react-dom'
 import { CSSTransition } from 'react-transition-group'
-import Backdrop from "./Backdrop";
+import Backdrop from "./Backdrop"
 import './Backdrop.css'
 import './Modal.css'
 
 const ModalOverlay = ({className, style, headerClass, header, onSubmit, contentClass, footer, footerClass, children}) => {
-    const modalRef = useRef();
+    const modalRef = useRef()
     const content = (
         <div className={`modal ${className}`} style={style} ref={modalRef}>
             <header className={`modal__header ${headerClass}`}>
@@ -22,7 +22,7 @@ const ModalOverlay = ({className, style, headerClass, header, onSubmit, contentC
             </form>
         </div>
     )
-    return createPortal(content, document.getElementById('modal-hook'));
+    return createPortal(content, document.getElementById('modal-hook'))
 }
 
 const Modal = ({show, onCancel, ...props})=> {

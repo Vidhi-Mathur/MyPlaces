@@ -2,8 +2,8 @@ import { useState, useContext } from 'react'
 import Card from '../../shared/components/UIElements/Card'
 import Button from '../../shared/components/FormElements/Button'
 import Modal from '../../shared/components/UIElements/Modal'
-import ErrorModal from '../../shared/components/UIElements/ErrorModal'
 import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner'
+import ErrorModal from '../../shared/components/UIElements/ErrorModal'
 import { AuthContext } from '../../shared/context/auth-context'
 import { useHttpClient } from '../../shared/hooks/http-hook'
 import './PlaceItem.css'
@@ -65,7 +65,7 @@ const PlaceItem = ({id, onDelete, address, coordinates, creator, image, title, d
             <Card className="place-item__content">
                 {isLoading && <LoadingSpinner asOverlay/>}
                 <div className="place-item__image">
-                    <img src={`${process.env.REACT_APP_URL}/${image}`} alt={title} />
+                    <img src={`${image}`} alt={title} />
                 </div>
                 <div className="place-item__info">
                     <h3>{title}</h3>

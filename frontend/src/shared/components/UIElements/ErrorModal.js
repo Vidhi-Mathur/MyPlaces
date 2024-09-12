@@ -1,5 +1,5 @@
 import Modal from './Modal'
-import Button from "../FormElements/Button";
+import Button from "../FormElements/Button"
 
 const ErrorModal = ({onClear, error}) => {
     return (
