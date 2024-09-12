@@ -5,6 +5,7 @@ const HttpError = require('../models/http-error')
 const getCoordinates = require('../util/location')
 const Place = require('../models/place')
 const User = require('../models/user');
+const { uploadToCloudinary } = require('../middleware/file-upload');
 
 
 exports.getPlaceByPlaceId = async(req, res, next) => {
@@ -45,9 +46,10 @@ exports.createPlace = async(req, res, next) => {
             return next(new HttpError('Invalid Input Fields', 422))
         }
         let coordinates = await getCoordinates(address)
+        let uploadedFile = await uploadToCloudinary(req.file.buffer, 'place-production');
         const createPlace = new Place({ 
             creator: creator, 
-            image: req.file.path,
+            image: uploadedFile.secure_url,
             title, 
             description, 
             address, 
@@ -68,6 +70,7 @@ exports.createPlace = async(req, res, next) => {
         res.status(200).json({ place: createPlace })
     } 
     catch(err) {
+        console.log(err)
         return next(new HttpError(err.message || 'Something went wrong. Try again later', err.code || 500))
     }
 }

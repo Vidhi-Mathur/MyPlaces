@@ -4,6 +4,7 @@ const bcryptjs = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const HttpError = require('../models/http-error')
 const User = require('../models/user')
+const { uploadToCloudinary } = require('../middleware/file-upload')
 
 exports.getUsers = async(req, res, next) => {
     try {
@@ -26,11 +27,12 @@ exports.signup = async(req, res, next) => {
         let existingUser = await User.findOne({ email: email })
         if(existingUser) return next(new HttpError('User already exist, login instead', 422))
         let hashedPassword = await bcryptjs.hash(password, 12)
+        let uploadedFile = await uploadToCloudinary(req.file.buffer, 'user-production');
         const createUser = new User({
             name,
             email,
             password: hashedPassword,
-            image: req.file.path,
+            image: uploadedFile.secure_url,
             places: []
         })
         await createUser.save()
