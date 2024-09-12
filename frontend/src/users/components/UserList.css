@@ -1,0 +1,12 @@
+.users-list{
+    list-style: none;
+    /* This centers the element horizontally on the page. The auto value for the left and right margin means that the element's left and right margins will be automatically adjusted to center it within its container. */
+    margin: 0 auto;
+    padding: 0;
+    width: 90%;
+    max-width: 50rem;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
